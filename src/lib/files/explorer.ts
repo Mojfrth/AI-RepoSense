@@ -1,5 +1,7 @@
-import { getProjectDataDir, readProjectManifest } from "@/lib/files/storage";
-import { readFile } from "fs/promises";
+import {
+  readProjectFileContent,
+  readProjectManifest,
+} from "@/lib/files/storage";
 import path from "path";
 
 export type FileTreeNode = {
@@ -79,11 +81,12 @@ export async function readProjectFile(
   const entry = manifest.find((item) => item.relativePath === normalized);
   if (!entry) return null;
 
-  const absolute = path.join(getProjectDataDir(projectId), "files", normalized);
-  const root = path.join(getProjectDataDir(projectId), "files");
-  if (!absolute.startsWith(root)) return null;
-
-  const content = await readFile(absolute, "utf8");
+  let content: string;
+  try {
+    content = await readProjectFileContent(projectId, normalized);
+  } catch {
+    return null;
+  }
   return {
     relativePath: normalized,
     content,

@@ -17,6 +17,7 @@ AI RepoSense is a full-stack application for understanding JavaScript and TypeSc
 - ZIP upload flow for local or private codebases.
 - File filtering to skip noise such as lockfiles, build output, binaries, and oversized files.
 - Framework detection and project setup for analysis.
+- Production repository files use private Vercel Blob storage; local development uses `.data/projects` on disk. 
 
 ### Code Understanding and Retrieval
 - Tree-sitter parsing for JavaScript and TypeScript.
