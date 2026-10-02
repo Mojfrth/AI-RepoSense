@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
     "sharp",
   ],
   transpilePackages: ["@xenova/transformers"],
+  outputFileTracingIncludes: {
+    "/api/projects/\\[id\\]/analyze": [
+      "./node_modules/onnxruntime-node/bin/napi-v3/linux/**/*",
+    ],
+  },
   experimental: {
     serverActions: {
       bodySizeLimit: "110mb",
