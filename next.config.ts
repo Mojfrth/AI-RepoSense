@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
   ],
   transpilePackages: ["@xenova/transformers"],
   outputFileTracingIncludes: {
+    "/api/chat": [
+      "./node_modules/onnxruntime-node/bin/napi-v3/linux/**/*",
+    ],
     "/api/projects/\\[id\\]/analyze": [
       "./node_modules/onnxruntime-node/bin/napi-v3/linux/**/*",
     ],
