@@ -23,10 +23,13 @@ export type ProjectActionState = {
 
 async function requireUser() {
   const session = await auth();
-  if (!session?.user?.id) {
+  const user = session?.user;
+
+  if (!user || !user.id) {
     redirect("/login");
   }
-  return session.user;
+
+  return user as typeof user & { id: string };
 }
 
 /** Link GitHub via Auth.js (same callback URL as login). */

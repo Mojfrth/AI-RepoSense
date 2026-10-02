@@ -12,7 +12,7 @@ export function getStripe(): Stripe {
 
   if (!stripeClient) {
     stripeClient = new Stripe(key, {
-      apiVersion: "2026-07-29.dahlia",
+      apiVersion: "2026-09-30.endive",
       typescript: true,
     });
   }

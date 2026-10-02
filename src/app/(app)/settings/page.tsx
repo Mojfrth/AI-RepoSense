@@ -30,7 +30,7 @@ function formatLimit(n: number) {
 
 export default async function SettingsPage({ searchParams }: PageProps) {
   const session = await auth();
-  if (!session?.user) return null;
+  if (!session?.user?.id) return null;
 
   const params = await searchParams;
   const plans = await getPlansWithStripePricing();
