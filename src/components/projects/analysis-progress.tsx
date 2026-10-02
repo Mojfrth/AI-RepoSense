@@ -19,6 +19,38 @@ type ProgressState = {
   report: { healthScore: number } | null;
 };
 
+type AnalyzeResponse = {
+  error?: string;
+  status?: ProgressState["status"];
+  progressStep?: string;
+  progressPercent?: number;
+};
+
+async function readAnalyzeResponse(
+  response: Response,
+): Promise<AnalyzeResponse> {
+  let body: string;
+  try {
+    body = await response.text();
+  } catch {
+    return { error: `Could not read analysis response (HTTP ${response.status}).` };
+  }
+
+  if (!body.trim()) {
+    return {
+      error: `Analysis endpoint returned an empty response (HTTP ${response.status}). Check the Vercel function logs.`,
+    };
+  }
+
+  try {
+    return JSON.parse(body) as AnalyzeResponse;
+  } catch {
+    return {
+      error: `Analysis endpoint returned a non-JSON response (HTTP ${response.status}). Check the Vercel function logs.`,
+    };
+  }
+}
+
 export function AnalysisProgress({
   projectId,
   initial,
@@ -71,13 +103,8 @@ export function AnalysisProgress({
         const response = await fetch(`/api/projects/${projectId}/analyze`, {
           method: "POST",
         });
-        const data = (await response.json()) as {
-          error?: string;
-          status?: ProgressState["status"];
-          progressStep?: string;
-          progressPercent?: number;
-        };
-        if (!response.ok && data.error) {
+        const data = await readAnalyzeResponse(response);
+        if (data.error) {
           setStartError(data.error);
           return;
         }
@@ -120,13 +147,8 @@ export function AnalysisProgress({
     const response = await fetch(`/api/projects/${projectId}/analyze`, {
       method: "POST",
     });
-    const data = (await response.json()) as {
-      error?: string;
-      status?: ProgressState["status"];
-      progressStep?: string;
-      progressPercent?: number;
-    };
-    if (!response.ok && data.error) {
+    const data = await readAnalyzeResponse(response);
+    if (data.error) {
       setStartError(data.error);
       return;
     }

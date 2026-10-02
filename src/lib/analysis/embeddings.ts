@@ -1,7 +1,5 @@
-import { env, pipeline } from "@xenova/transformers";
-
-// Run fully from the Hugging Face hub cache; no local model path required.
-env.allowLocalModels = false;
+import { tmpdir } from "node:os";
+import path from "node:path";
 
 export const EMBEDDING_DIMENSIONS = 384;
 const BATCH_SIZE = 16;
@@ -20,10 +18,18 @@ let extractorPromise: Promise<FeatureExtractor> | null = null;
 
 async function getExtractor(): Promise<FeatureExtractor> {
   if (!extractorPromise) {
-    extractorPromise = pipeline(
-      "feature-extraction",
-      MODEL_ID,
-    ) as Promise<FeatureExtractor>;
+    extractorPromise = (async () => {
+      // Load this native/runtime-heavy dependency only when analysis actually runs.
+      const { env, pipeline } = await import("@xenova/transformers");
+      env.allowLocalModels = false;
+      // Vercel's function bundle is read-only; /tmp is writable and may survive
+      // between warm invocations on the same function instance.
+      env.cacheDir = path.join(tmpdir(), "ai-reposense-transformers-cache");
+      return pipeline("feature-extraction", MODEL_ID) as Promise<FeatureExtractor>;
+    })().catch((error: unknown) => {
+      extractorPromise = null;
+      throw error;
+    });
   }
   return extractorPromise;
 }

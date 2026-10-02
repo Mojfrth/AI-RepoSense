@@ -1,4 +1,3 @@
-import { runFullProjectAnalysis } from "@/lib/analysis/pipline";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 
@@ -58,6 +57,9 @@ export async function POST(_request: Request, context: RouteContext) {
   }
 
   try {
+    const { runFullProjectAnalysis } = await import(
+      "@/lib/analysis/pipline"
+    );
     await runFullProjectAnalysis(project.id);
     const updated = await prisma.project.findUnique({
       where: { id: project.id },
@@ -69,6 +71,7 @@ export async function POST(_request: Request, context: RouteContext) {
       progressPercent: updated?.progressPercent,
     });
   } catch (error) {
+    console.error("Project analysis failed", { projectId: project.id, error });
     const updated = await prisma.project.findUnique({
       where: { id: project.id },
     });
