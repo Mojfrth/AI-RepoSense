@@ -1,3 +1,5 @@
+<img width="1467" height="798" alt="Screenshot 2026-10-02 at 3 17 21 PM" src="https://github.com/user-attachments/assets/15c37f4b-0ed5-4d50-a782-29ebadd63861" />
+
 # AI RepoSense 🚀
 
 AI RepoSense is a full-stack application for understanding JavaScript and TypeScript repositories through AI-powered analysis. It accepts a GitHub repository or ZIP upload, extracts the codebase, parses it with Tree-sitter, stores code chunks in a pgvector database, and then answers questions, highlights issues, and generates a health report based on the actual source.
