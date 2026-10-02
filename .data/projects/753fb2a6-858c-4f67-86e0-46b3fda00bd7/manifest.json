@@ -1,0 +1,106 @@
+[
+  {
+    "relativePath": "app/components/ATS.tsx",
+    "sizeBytes": 2328
+  },
+  {
+    "relativePath": "app/components/Accordion.tsx",
+    "sizeBytes": 5332
+  },
+  {
+    "relativePath": "app/components/Details.tsx",
+    "sizeBytes": 5228
+  },
+  {
+    "relativePath": "app/components/FileUploader.tsx",
+    "sizeBytes": 2891
+  },
+  {
+    "relativePath": "app/components/Navbar.tsx",
+    "sizeBytes": 387
+  },
+  {
+    "relativePath": "app/components/ResumeCard.tsx",
+    "sizeBytes": 1867
+  },
+  {
+    "relativePath": "app/components/ScoreBadge.tsx",
+    "sizeBytes": 629
+  },
+  {
+    "relativePath": "app/components/ScoreCircle.tsx",
+    "sizeBytes": 1907
+  },
+  {
+    "relativePath": "app/components/ScoreGauge.tsx",
+    "sizeBytes": 2186
+  },
+  {
+    "relativePath": "app/components/Summary.tsx",
+    "sizeBytes": 1730
+  },
+  {
+    "relativePath": "app/lib/pdf2img.ts",
+    "sizeBytes": 2643
+  },
+  {
+    "relativePath": "app/lib/puter.ts",
+    "sizeBytes": 14051
+  },
+  {
+    "relativePath": "app/lib/utils.ts",
+    "sizeBytes": 616
+  },
+  {
+    "relativePath": "app/root.tsx",
+    "sizeBytes": 2006
+  },
+  {
+    "relativePath": "app/routes.ts",
+    "sizeBytes": 315
+  },
+  {
+    "relativePath": "app/routes/auth.tsx",
+    "sizeBytes": 2040
+  },
+  {
+    "relativePath": "app/routes/home.tsx",
+    "sizeBytes": 2366
+  },
+  {
+    "relativePath": "app/routes/resume.tsx",
+    "sizeBytes": 3682
+  },
+  {
+    "relativePath": "app/routes/upload.tsx",
+    "sizeBytes": 5308
+  },
+  {
+    "relativePath": "app/routes/wipe.tsx",
+    "sizeBytes": 1697
+  },
+  {
+    "relativePath": "constants/index.ts",
+    "sizeBytes": 6675
+  },
+  {
+    "relativePath": "package.json",
+    "sizeBytes": 949
+  },
+  {
+    "relativePath": "react-router.config.ts",
+    "sizeBytes": 205
+  },
+  {
+    "relativePath": "types/index.d.ts",
+    "sizeBytes": 1025
+  },
+  {
+    "relativePath": "types/puter.d.ts",
+    "sizeBytes": 1316
+  },
+  {
+    "relativePath": "vite.config.ts",
+    "sizeBytes": 280
+  }
+]
